@@ -1,0 +1,25 @@
+default ansible_connection=local
+
+[webservers]
+default
+
+[dbservers]
+default
+
+[ojs_3_1_2_4]
+default
+
+[ojs]
+default
+
+[phpdevel]
+default
+
+[php73clients]
+default
+
+[manual]
+default
+
+[textprocessors]
+default

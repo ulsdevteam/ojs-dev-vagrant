@@ -1,0 +1,36 @@
+- name: ojs dev environment setup
+  remote_user: ulsprovision
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: ensure group "ulssysdev" exists
+      ansible.builtin.group:
+        name: ulssysdev
+        state: present
+
+    - name: add vagrant user to ulssysdev
+      user:
+        name: vagrant
+        groups: ulssysdev
+        append: yes
+
+    - name: remove older php version
+      yum:
+        name:
+          - php-cli
+          - php-common
+          - php-pear
+          - php-process
+          - php-xml
+        state: removed
+
+- import_playbook: ansible-build/repos.yml
+- import_playbook: ansible-build/base.yml
+- import_playbook: ansible-build/apache.yml
+- import_playbook: ansible-build/php73.yml
+- import_playbook: ansible-build/php-devel.yml
+- import_playbook: ansible-build/text_processing.yml
+- import_playbook: ansible-build/mysql.yml
+- import_playbook: ansible-build/ojs.yml
+- import_playbook: ansible-build/ojs-3.1.2-4.yml

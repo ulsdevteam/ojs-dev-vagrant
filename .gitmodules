@@ -1,0 +1,4 @@
+[submodule "ansible-build"]
+	path = ansible-build
+	url = https://github.com/ulsdevteam/ansible-build.git
+	branch = ojs-dev
